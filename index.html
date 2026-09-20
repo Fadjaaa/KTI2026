@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peran Musik Dalam Menciptakan Suasana Belajar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+<!-- ============ LAYAR PEMBUKA (INTRO LOADER) ============ -->
+<div class="intro-loader" id="introLoader" aria-hidden="true">
+  <div class="intro-loader-bg"></div>
+  <div class="intro-loader-notes">
+    <span>&#9834;</span><span>&#9835;</span><span>&#9833;</span>
+    <span>&#9834;</span><span>&#9835;</span><span>&#9833;</span>
+  </div>
+  <div class="intro-loader-content">
+    <span class="intro-loader-mark">FAD</span>
+    <div class="intro-loader-bars" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <p class="intro-loader-text">Menyiapkan suasana belajar<span class="intro-loader-dots"><span>.</span><span>.</span><span>.</span></span></p>
+  </div>
+</div>
+
+<!-- ============ NAVIGASI ============ -->
+<header class="nav" id="nav">
+  <a href="#beranda" class="nav-brand">
+    <span class="nav-mark">FAD</span>
+    <span>Fachri Akbar Dj</span>
+  </a>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="#profil" class="nav-link">Profil</a>
+    <a href="#bab1" class="nav-link">Bab I</a>
+    <a href="#bab2" class="nav-link">Bab II</a>
+    <a href="#bab3" class="nav-link">Bab III</a>
+    <a href="#bab4" class="nav-link">Bab IV</a>
+  </nav>
+
+  <div class="nav-actions">
+    <div class="popover-wrap">
+      <button class="music-toggle" id="musicToggle" aria-label="Putar/hentikan musik" aria-pressed="false">
+        <span class="music-bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <svg id="iconPlay" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="iconPause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <button class="popover-caret" id="musicCaret" aria-label="Pilih lagu" aria-expanded="false">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+
+      <div class="popover" id="musicPopover">
+        <span class="popover-title">Pilih Lagu</span>
+        <button class="popover-option is-active" data-track="bye.mpeg">
+          <span class="popover-dot"></span> Bye
+        </button>
+        <button class="popover-option" data-track="Lights Are On.mpeg">
+          <span class="popover-dot"></span> Lights are on
+        </button>
+        <button class="popover-option" data-track="September.mpeg">
+          <span class="popover-dot"></span> September
+        </button>
+
+        <div class="popover-divider" aria-hidden="true"></div>
+
+        <div class="popover-volume">
+          <button type="button" class="volume-mute" id="volumeMute" aria-label="Bisukan atau nyalakan suara" aria-pressed="false">
+            <svg id="iconVolumeOn" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 12a4.5 4.5 0 0 0-2-3.74v7.48A4.5 4.5 0 0 0 16.5 12z"/></svg>
+            <svg id="iconVolumeOff" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"/><path d="M16 9l6 6M22 9l-6 6"/></svg>
+          </button>
+          <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50" step="1" aria-label="Atur volume musik">
+          <span class="volume-value" id="volumeValue">50%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="popover-wrap">
+      <button class="theme-toggle" id="themeToggle" aria-label="Ganti mode terang/gelap">
+        <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <button class="popover-caret" id="themeCaret" aria-label="Pilih tema warna" aria-expanded="false">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+
+      <div class="popover" id="themePopover">
+        <span class="popover-title">Pilih Tema</span>
+        <button class="popover-swatch" data-theme="dark">
+          <span class="popover-swatch-dot" style="background:#15140f"></span> Gelap
+        </button>
+        <button class="popover-swatch" data-theme="light">
+          <span class="popover-swatch-dot" style="background:#f6f1e4"></span> Terang
+        </button>
+        <button class="popover-swatch" data-theme="azure">
+          <span class="popover-swatch-dot" style="background:#10202f"></span> Biru
+        </button>
+        <button class="popover-swatch" data-theme="forest">
+          <span class="popover-swatch-dot" style="background:#11201a"></span> Hijau
+        </button>
+        <button class="popover-swatch" data-theme="rose">
+          <span class="popover-swatch-dot" style="background:#241318"></span> Merah Marun
+        </button>
+      </div>
+    </div>
+
+    <button class="nav-burger" id="navBurger" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <audio id="bgMusic" src="bye.mpeg" loop preload="none"></audio>
+</header>
+
+<main>
+
+  <!-- ============ BERANDA / HERO ============ -->
+  <section class="hero page-flip" id="beranda">
+    <p class="hero-eyebrow">Karya Tulis Ilmiah &middot; Peran Musik Dalam Menciptakan Suasana Belajar</p>
+
+    <div class="hero-stage">
+      <div class="hero-stage-text" aria-hidden="true">
+        <div class="hero-marquee">
+          <span>Fachri Akbar Djaelani</span>
+          <span>Peran Musik Dalam Menciptakan Suasana Belajar</span>
+        </div>
+      </div>
+
+      <div class="hero-notes" aria-hidden="true">
+        <span>&#9834;</span>
+        <span>&#9835;</span>
+        <span>&#9833;</span>
+        <span>&#9834;</span>
+      </div>
+
+      <img class="hero-photo" id="heroPhoto" src="P3.png" alt="Foto sampul — ketuk untuk ganti foto" role="button" tabindex="0">
+      <span class="hero-photo-hint" id="heroPhotoHint" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M17 2l4 4-4 4M21 6H8a5 5 0 0 0 0 10h1"/></svg>
+        Ketuk foto
+      </span>
+      <span class="hero-scroll">KTI 2026</span>
+    </div>
+
+    <p class="hero-desc">
+      Peran Musik Dalam Menciptakan Suasana Belajar -
+      Kenyamanan, Konsentrasi, Relaksasi, dan Motivasi Belajar.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Disusun oleh</span>
+        <span class="hero-meta-value">Fachri Akbar Djaelani</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">NIS</span>
+        <span class="hero-meta-value">131232050062240119</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Tanggal</span>
+        <span class="hero-meta-value">10 Oktober 2008</span>
+      </div>
+    </div>
+
+    <a class="hero-download" href="bab1.docx" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+      Unduh Karya Tulis (docx)
+    </a>
+  </section>
+
+  <!-- ============ PROFIL ============ -->
+  <section class="section page-flip" id="profil">
+    <div class="chapter-fx" aria-hidden="true"><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span class="spark">&#10022;</span><span class="spark">&#10023;</span><span class="spark">&#8902;</span></div>
+    <div class="section-head">
+      <span class="section-kicker">Profil</span>
+      <h2 class="section-title">Tentang Penyusun</h2>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-top">
+        <div class="profile-photo">
+          <img src="P2.jpeg" alt="Foto profil">
+        </div>
+        <div class="profile-top-text">
+          <h3 class="profile-name">Fachri Akbar Djaelani</h3>
+          <p class="profile-role">XII MIPA 1 &middot; MA Persis Tarogong</p>
+        </div>
+      </div>
+
+      <div class="profile-info">
+        <p class="profile-bio">
+          Penulis bernama lengkap Fachri Akbar Djaelani, lahir di Garut pada 10 Oktober 2008, merupakan anak kedua dari dua bersaudara pasangan Bapak Deden Akbar dan Ibu Yeni Maryani, beralamat di Kp. Pasir Teureup RT02/RW12, Desa Sukarame, Kecamatan Leles, Kabupaten Garut, Jawa Barat; ia menempuh pendidikan di TK AR-Rahman (2012–2014), SDN Cangkuang 05 (2015–2021), pendidikan keagamaan di MD Persis 160, dan kini melanjutkan di MA Persis Tarogong sejak 2024, serta pada 2025–2026 diamanahi sebagai Pradana Pramuka; penulis memiliki minat besar dalam musik dan mampu bermain gitar, menyukai dunia permesinan dengan impian membuat mesin kendaraan, dan bercita-cita menjadi seorang pilot.
+        </p>
+
+        <dl class="profile-facts">
+          <div class="profile-fact">
+            <dt>Sekolah</dt>
+            <dd>MA Persis Tarogong</dd>
+          </div>
+          <div class="profile-fact">
+            <dt>Kelas</dt>
+            <dd>XII MIPA 1</dd>
+          </div>
+          <div class="profile-fact">
+            <dt>Kontak</dt>
+            <dd>fadjaanugas@gmail.com</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DAFTAR ISI RINGKAS ============ -->
+  <section class="toc page-flip">
+    <div class="chapter-fx" aria-hidden="true"><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span class="spark">&#10022;</span><span class="spark">&#10023;</span><span class="spark">&#8902;</span></div>
+    <span class="section-kicker toc-kicker">Daftar Isi</span>
+    <div class="toc-grid">
+      <a href="#bab1" class="toc-item">
+        <span class="toc-num">I</span>
+        <span class="toc-text">
+          <span class="toc-title">Pendahuluan</span>
+          <span class="toc-sub">Latar belakang &amp; tujuan</span>
+        </span>
+      </a>
+      <a href="#bab2" class="toc-item">
+        <span class="toc-num">II</span>
+        <span class="toc-text">
+          <span class="toc-title">Tinjauan Pustaka</span>
+          <span class="toc-sub">Landasan teori</span>
+        </span>
+      </a>
+      <a href="#bab3" class="toc-item">
+        <span class="toc-num">III</span>
+        <span class="toc-text">
+          <span class="toc-title">Pembahasan</span>
+          <span class="toc-sub">Analisis &amp; hasil</span>
+        </span>
+      </a>
+      <a href="#bab4" class="toc-item">
+        <span class="toc-num">IV</span>
+        <span class="toc-text">
+          <span class="toc-title">Penutup</span>
+          <span class="toc-sub">Kesimpulan &amp; saran</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ BAB I ============ -->
+  <section class="chapter page-flip" id="bab1">
+    <span class="chapter-num">I</span>
+    <div class="chapter-fx" aria-hidden="true"><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span class="spark">&#10022;</span><span class="spark">&#10023;</span><span class="spark">&#8902;</span></div>
+    <div class="chapter-body">
+      <div class="section-head">
+        <span class="section-kicker">Bab I</span>
+        <h2 class="section-title">Pendahuluan</h2>
+      </div>
+
+      <div class="chapter-grid">
+        <div class="chapter-text">
+          <h3>Latar Belakang</h3>
+          <p>
+            Belajar membutuhkan suasana yang nyaman agar siswa dapat berkonsentrasi dan memahami materi dengan baik.
+            Namun, konsentrasi dapat terganggu oleh kebisingan, rasa bosan, mengantuk, maupun penggunaan HP. Musik
+            menjadi salah satu cara yang sering digunakan siswa untuk menciptakan suasana belajar yang nyaman. Musik dapat
+            membantu meningkatkan mood, motivasi, perhatian, dan konsentrasi, meskipun pengaruhnya berbeda pada setiap
+            siswa. Oleh karena itu, penulis tertarik untuk membahas peran musik dalam menciptakan suasana belajar siswa.
+          </p>
+
+          <h3>Rumusan Masalah</h3>
+          <ul class="chapter-list">
+            <li>Peran Musik Dalam Menciptakan Suasana Belajar ?</li>
+            <li>Bagaimana Musik Dalam Menciptakan Suasana Belajar ?</li>
+          </ul>
+
+          <h3>Tujuan</h3>
+          <p>
+            Mengetahui Peran Musik Dalam Menciptakan Suasana Belajar.
+            Mengetahui Bagaimna Musik Dalam Menciptakan Suasana Belajar.
+          </p>
+        </div>
+        <figure class="chapter-figure">
+          <img src="PB1.png" alt="Ilustrasi Bab I">
+          <svg class="chapter-figure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BAB II ============ -->
+  <section class="chapter chapter-alt page-flip" id="bab2">
+    <span class="chapter-num">II</span>
+    <div class="chapter-fx" aria-hidden="true"><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span class="spark">&#10022;</span><span class="spark">&#10023;</span><span class="spark">&#8902;</span></div>
+    <div class="chapter-body">
+      <div class="section-head">
+        <span class="section-kicker">Bab II</span>
+        <h2 class="section-title">Tinjauan Pustaka</h2>
+      </div>
+
+      <div class="chapter-grid chapter-grid-reverse">
+        <figure class="chapter-figure">
+          <img src="PB2.png" alt="Ilustrasi Bab II">
+          <svg class="chapter-figure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+        </figure>
+        <div class="chapter-text">
+          <h3>Landasan Teori</h3>
+          <ul class="chapter-list">
+            <li>Peran dapat dipahami sebagai fungsi atau kedudukan yang dijalankan oleh seseorang maupun sesuatu dalam suatu kegiatan, sehingga memberikan pengaruh terhadap keadaan di sekitarnya (Awaludin & Ramdani, 2022). Dalam konteks ini, peran yang dimaksud adalah fungsi musik dalam memengaruhi dan membantu menciptakan suasana belajar siswa.</li>
+            <li>Musik adalah bunyi yang disusun secara teratur melalui unsur nada, irama, melodi, dan harmoni sehingga menghasilkan komposisi yang memiliki kesatuan dan dapat memengaruhi pikiran, perasaan, maupun suasana hati pendengarnya (Haryandri, 2020). Unsur-unsur musik meliputi nada, irama, melodi, harmoni, timbre, tempo, dan dinamika (Pranoto & Septiani, 2023), yang secara terpadu membentuk karakter sebuah karya musik. Musik juga dapat dibedakan menjadi beberapa jenis: musik klasik, kontemporer, tradisional, dan nontradisional.</li>
+            <li>Suasana belajar merupakan kondisi fisik maupun psikologis yang melingkupi kegiatan belajar siswa dan dapat memengaruhi tingkat konsentrasi, kenyamanan, serta semangat siswa dalam memahami materi (Herman dkk., 2022). Suasana ini dipengaruhi oleh lingkungan keluarga, sekolah, dan masyarakat, serta faktor non-sosial seperti udara, cuaca, dan suara di sekitar tempat belajar.</li>
+            <li>Belajar adalah proses perubahan tingkah laku sebagai hasil dari pengalaman, latihan, dan interaksi individu dengan lingkungannya, yang mencakup aspek kognitif, afektif, dan psikomotor (Parnawi, 2020).</li>
+          </ul>
+
+          <h3>Penelitian / Referensi Terkait</h3>
+          <ul class="chapter-list">
+            <li>Maghfiroh & Nurharini (2018) menunjukkan bahwa kegiatan musik dapat membantu membentuk konsentrasi siswa melalui pembiasaan untuk fokus dan mengikuti arahan.</li>
+            <li>Khoirot, Yusuf, Aisyah, & Alfikri (2024) menemukan bahwa musik instrumental memberikan pengaruh nyata terhadap peningkatan perhatian belajar mahasiswa, dan musik tanpa lirik cenderung lebih efektif sebagai pengiring belajar.</li>
+            <li>Silaen, Ramadhanti, & Utami (2023) mengungkapkan bahwa musik jazz memberikan pengaruh lebih signifikan terhadap konsentrasi belajar dibandingkan musik pop.</li>
+            <li>Hidayat, Febrianti, Rohmah, & Jantia (2025) menemukan adanya kecenderungan peningkatan konsentrasi belajar siswa sekolah dasar setelah mendengarkan musik instrumental.</li>
+            <li>Kartini & Sa'adah (2022) menunjukkan bahwa mendengarkan musik religi dapat memperbaiki suasana hati mahasiswa sehingga lebih mudah berkonsentrasi saat belajar.</li>
+          </ul>
+
+          <h3>Kerangka Berpikir</h3>
+          <p>
+            Musik memiliki unsur-unsur (nada, irama, melodi, harmoni, tempo, dinamika) yang dapat memengaruhi tingkat arousal atau kewaspadaan seseorang. Musik dengan tempo lambat dan minim lirik cenderung menciptakan kondisi emosional yang tenang, sehingga membantu membentuk suasana belajar yang nyaman dan kondusif. Suasana belajar yang nyaman ini pada gilirannya meningkatkan konsentrasi, kenyamanan, dan semangat siswa dalam proses belajar — yang merupakan inti dari proses perubahan tingkah laku (belajar) itu sendiri. Dengan demikian, keempat teori di atas (peran, musik, suasana, dan belajar) saling berkaitan membentuk dasar pemikiran bahwa musik berperan menciptakan suasana belajar yang optimal bagi siswa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BAB III ============ -->
+  <section class="chapter page-flip" id="bab3">
+    <span class="chapter-num">III</span>
+    <div class="chapter-fx" aria-hidden="true"><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span class="spark">&#10022;</span><span class="spark">&#10023;</span><span class="spark">&#8902;</span></div>
+    <div class="chapter-body">
+      <div class="section-head">
+        <span class="section-kicker">Bab III</span>
+        <h2 class="section-title">Pembahasan</h2>
+      </div>
+
+      <div class="chapter-grid">
+        <div class="chapter-text">
+          <h3>Metode / Pendekatan</h3>
+          <p>
+            Pembahasan pada bab ini disusun menggunakan studi literatur, yaitu dengan mengkaji dan menganalisis berbagai sumber pustaka (jurnal, buku, dan hasil penelitian terdahulu) yang berkaitan dengan peran musik, konsentrasi, suasana hati, dan proses belajar. Temuan-temuan dari sumber tersebut kemudian dihubungkan dengan landasan teori pada Bab II untuk menjawab rumusan masalah mengenai peran musik dalam menciptakan suasana belajar yang nyaman bagi siswa.
+          </p>
+
+          <h3>Hasil &amp; Analisis</h3>
+          <ul class="chapter-list">
+            <li>Musik berperan sebagai pendukung ketenangan belajar — musik yang lembut membantu siswa merasa lebih nyaman dan siap memulai kegiatan belajar, tanpa harus berada dalam kondisi hening sepenuhnya.</li>
+            <li>Musik berperan sebagai pendukung konsentrasi, khususnya musik instrumental tanpa lirik, karena tidak bersaing secara kognitif dengan proses membaca, menulis, atau menghafal materi.</li>
+            <li>Musik berperan sebagai penunjang suasana hati dan semangat belajar, membantu siswa yang jenuh atau kurang bersemangat menjadi lebih siap memulai maupun melanjutkan tugas.</li>
+            <li>Jenis musik perlu dipilih sesuai kebutuhan — musik instrumental, lo-fi, klasik, atau bunyi alam lebih sesuai untuk tugas yang membutuhkan pemahaman tinggi, sedangkan musik dengan lirik yang dikenal atau tempo cepat berisiko mengalihkan perhatian.</li>
+            <li>Volume, tempo, dan durasi pemutaran musik memengaruhi efektivitasnya — musik sebaiknya diputar rendah sebagai latar dan dibatasi durasinya agar tidak menimbulkan ketergantungan.</li>
+            <li>Kesesuaian musik dengan jenis kegiatan belajar turut menentukan hasil — tugas rutin (merangkum, menggambar) lebih fleksibel terhadap musik, sedangkan materi baru atau sulit (rumus, hafalan) lebih baik dipelajari dalam suasana tenang.</li>
+            <li>Keberhasilan penggunaan musik bergantung pada faktor individu, seperti preferensi, kondisi emosi, tingkat kesulitan materi, serta lingkungan belajar siswa — sehingga pengaruh musik tidak dapat disamaratakan untuk semua orang.</li>
+            <li>Musik memiliki batasan penggunaan, yakni tidak boleh dijadikan alasan menunda tugas atau berlama-lama dengan gawai, dan penggunaan earphone tetap perlu memperhatikan volume serta waktu istirahat telinga.</li>
+          </ul>
+
+          <h3>Pembahasan</h3>
+          <p>
+            Temuan-temuan di atas menegaskan bahwa musik bukan faktor tunggal penentu keberhasilan belajar, melainkan pendukung yang efektivitasnya bergantung pada jenis musik, volume, durasi, jenis tugas, serta kondisi emosi dan preferensi masing-masing siswa — sejalan dengan teori arousal dan konsep suasana belajar pada Bab II (Herman dkk., 2022; Khoirot dkk., 2024). Musik dengan tempo lambat, minim lirik, dan volume rendah cenderung paling sesuai sebagai musik latar, sedangkan materi yang sulit atau baru justru lebih baik dipelajari dalam kondisi tenang tanpa musik.
+          </p>
+          <p>
+            Penerapannya dilakukan melalui langkah sederhana: menyiapkan tempat dan materi belajar, memilih musik sesuai kebutuhan, menentukan target belajar yang jelas, serta mengatur waktu istirahat agar musik tidak menjadi pusat perhatian melainkan tetap berperan sebagai latar. Dengan demikian, jawaban atas rumusan masalah adalah: musik dapat berperan mendukung ketenangan, konsentrasi, suasana hati, dan semangat belajar siswa, serta dapat membantu menciptakan suasana belajar yang nyaman apabila digunakan secara sadar, terukur, dan tetap berorientasi pada tujuan belajar itu sendiri.
+          </p>
+        </div>
+        <figure class="chapter-figure">
+          <img src="PB3.png" alt="Ilustrasi Bab III">
+          <svg class="chapter-figure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BAB IV ============ -->
+  <section class="chapter chapter-alt page-flip" id="bab4">
+    <span class="chapter-num">IV</span>
+    <div class="chapter-fx" aria-hidden="true"><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span>&#9834;</span><span>&#9835;</span><span>&#9833;</span><span class="spark">&#10022;</span><span class="spark">&#10023;</span><span class="spark">&#8902;</span></div>
+    <div class="chapter-body">
+      <div class="section-head">
+        <span class="section-kicker">Bab IV</span>
+        <h2 class="section-title">Penutup</h2>
+      </div>
+
+      <div class="chapter-grid chapter-grid-reverse">
+        <figure class="chapter-figure">
+          <img src="PB4.png" alt="Ilustrasi Bab IV">
+          <svg class="chapter-figure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+        </figure>
+        <div class="chapter-text">
+          <h3>Kesimpulan</h3>
+          <p>
+            Musik memiliki peran sebagai pendukung dalam menciptakan suasana belajar siswa, meskipun bukan satu-satunya faktor penentu keberhasilan belajar. Musik membantu menciptakan ketenangan sebelum dan selama belajar, mendukung konsentrasi (terutama musik instrumental yang minim lirik), serta membantu mengelola suasana hati dan membangkitkan semangat belajar. Meski demikian, pengaruh musik tidak selalu signifikan pada setiap siswa karena bergantung pada jenis musik dan karakteristik masing-masing individu.
+          </p>
+          <p>
+            Penggunaan musik dapat membantu menciptakan suasana belajar yang nyaman apabila dilakukan secara tepat — melalui pemilihan jenis musik yang sesuai, pengaturan volume tetap rendah sebagai suara latar, pembatasan durasi agar tidak menimbulkan ketergantungan, serta penyesuaian dengan tingkat kesulitan materi. Musik bertempo lambat, minim lirik, dan bersifat instrumental cenderung paling sesuai sebagai pengiring belajar.
+          </p>
+          <p>
+            Dengan demikian, musik bukan pengganti usaha dan kesungguhan siswa dalam belajar, melainkan sarana pendukung yang dapat digunakan secara bijak agar suasana belajar terasa lebih nyaman, tenang, dan terarah, sehingga tujuan pembelajaran dapat tercapai secara lebih optimal.
+          </p>
+
+          <h3>Saran</h3>
+          <ul class="chapter-list chapter-list-saran">
+            <li>
+              <strong>a. Pembaca</strong>
+              <p>Siswa disarankan mengenali kebutuhan dan karakter belajarnya masing-masing sebelum menggunakan musik sebagai pengiring belajar, serta membandingkan hasil belajar dengan dan tanpa musik untuk menemukan cara yang paling sesuai. Jika belajar sambil mendengarkan musik, perhatikan jenis musik, volume, dan durasi agar tetap berfungsi sebagai pendukung, bukan gangguan.</p>
+              <p>Guru dan orang tua disarankan tidak memandang musik secara berlebihan—baik selalu bermanfaat maupun selalu mengganggu—melainkan membimbing siswa menggunakannya secara bijak, termasuk mengatur volume dan waktu penggunaannya.</p>
+            </li>
+            <li>
+              <strong>b. Penulis Selanjutnya</strong>
+              <p>Karya tulis ini masih terbatas pada kajian pustaka. Penulis selanjutnya disarankan melakukan penelitian lanjutan secara langsung (angket, wawancara, atau eksperimen) untuk memperoleh gambaran yang lebih mendalam mengenai pengaruh musik terhadap suasana dan konsentrasi belajar siswa.</p>
+            </li>
+            <li>
+              <strong>c. Lembaga</strong>
+              <p>Pesantren atau sekolah disarankan memperhatikan penciptaan suasana belajar yang kondusif, baik melalui ruang belajar yang nyaman maupun kebijakan yang mendukung siswa menemukan cara belajar sesuai kebutuhannya, termasuk mempertimbangkan waktu atau tempat khusus bagi siswa yang terbantu dengan musik saat belajar mandiri.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p>&copy; 2026 Fachri Akbar Djaelani &middot; Disusun untuk keperluan presentasi.</p>
+    <a href="#beranda" class="footer-top">Kembali ke atas ↑</a>
+  </footer>
+
+</main>
+
+<!-- ============ LIGHTBOX FOTO BAB ============ -->
+<div class="img-lightbox" id="imgLightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="img-lightbox-close" id="imgLightboxClose" aria-label="Tutup gambar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img class="img-lightbox-img" id="imgLightboxImg" src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
