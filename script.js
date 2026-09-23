@@ -338,7 +338,7 @@ const heroDownload = document.querySelector('.hero-download');
 // Daftar 7 file PDF per bab yang akan diunduh sekaligus.
 // Ganti nama file di sini sesuai nama file PDF yang sebenarnya.
 const heroDownloadFiles = [
-  'FACHRI AKBAR DJAELANI_KTI 2026.rtf',
+  'KTI_FACHRI AKBAR DJAELANI_XII MIPA 1.pdf',
 ];
 
 function downloadMultipleFiles(fileList){
